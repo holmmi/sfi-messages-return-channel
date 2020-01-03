@@ -1,0 +1,24 @@
+{
+  "name": "sfi-messages-return-channel",
+  "version": "1.0.0",
+  "description": "Suomi.fi Messages return channel service.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github:holmmi/sfi-messages-return-channel.git"
+  },
+  "keywords": [
+    "sfi",
+    "soap",
+    "signatures"
+  ],
+  "author": "Mikael Holm",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "soap": "^0.30.0"
+  }
+}

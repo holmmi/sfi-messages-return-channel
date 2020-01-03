@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Tero Rönkä (Digia Finland Oy) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.suomi.fi/asiointitili" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ViranomaisPaluukanava" targetNamespace="http://www.suomi.fi/asiointitili">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.suomi.fi/asiointitili" elementFormDefault="qualified">
+			<xs:element name="VieKohdeTiloja">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Viranomainen" type="tns:Viranomainen" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="Kysely" type="tns:Kysely_WSPA4" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="Viranomainen">
+				<xs:sequence>
+					<xs:element name="ViranomaisTunnus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="PalveluTunnus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="KayttajaTunnus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="SanomaTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="SanomaVersio" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="SanomaVarmenneNimi" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Kysely_WSPA4">
+				<xs:sequence>
+					<xs:element name="KohdeMaara" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Kohteet" type="tns:ArrayOfKohde_WSPA4" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfKohde_WSPA4">
+				<xs:sequence>
+					<xs:element name="Kohde" type="tns:Kohde_WSPA4" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Kohde_WSPA4">
+				<xs:sequence>
+					<xs:element name="ViranomaisTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Asiakas" type="tns:AsiakasJaKohteenTila_WSPA4" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ViranomaisenEmail" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Nimeke" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="AsiakasJaKohteenTila_WSPA4">
+				<xs:sequence>
+					<xs:element name="AsiointitiliTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="KohteenTila" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="KohteenTilaPvm" type="xsd:dateTime" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="KohteenTilaKuvaus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="AsiakasTunnus" type="xsd:string"/>
+				<xs:attribute name="TunnusTyyppi" type="xsd:string"/>
+			</xs:complexType>
+			<xs:element name="VieKohdeTilojaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VieKohdeTilojaResult" type="tns:Vastaus_WSPA4" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="Vastaus_WSPA4">
+				<xs:sequence>
+					<xs:element name="TilaKoodi" type="tns:TilaKoodi_WS" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="TilaKoodi_WS">
+				<xs:sequence>
+					<xs:element name="TilaKoodi" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="TilaKoodiKuvaus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="SanomaTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="VieKohteita">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Viranomainen" type="tns:Viranomainen" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="Kysely" type="tns:Kysely_WSPA5" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="Kysely_WSPA5">
+				<xs:sequence>
+					<xs:element name="KohdeMaara" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Kohteet" type="tns:ArrayOfKohde_WSPA5" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfKohde_WSPA5">
+				<xs:sequence>
+					<xs:element name="Kohde" type="tns:Kohde_WSPA5" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Kohde_WSPA5">
+				<xs:sequence>
+					<xs:element name="Asiakas" type="tns:Asiakas" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="AsiointitiliTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Viittaus" type="tns:ArrayOfViittaus_WS" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="Nimeke" type="xsd:string" maxOccurs="1"/>
+					<xs:element name="LahetysPvm" type="xsd:dateTime" nillable="true" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="LahettajaNimi" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="KuvausTeksti" type="xsd:string" maxOccurs="1"/>
+					<xs:element name="Tiedostot" type="tns:ArrayOfTiedosto" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ViranomaisenEmail" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Asiakas">
+				<xs:attribute name="AsiakasTunnus" type="xsd:string"/>
+				<xs:attribute name="Sahkoposti" type="xsd:string"/>
+				<xs:attribute name="Matkapuhelin" type="xsd:string"/>
+				<xs:attribute name="TunnusTyyppi" type="xsd:string"/>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfViittaus_WS">
+				<xs:sequence>
+					<xs:element name="Viittaus_WS" type="tns:Viittaus_WS" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Viittaus_WS">
+				<xs:attribute name="ViittausTunniste" type="xsd:string"/>
+				<xs:attribute name="ViittausTunnisteTyyppi" type="xsd:string"/>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfTiedosto">
+				<xs:sequence>
+					<xs:element name="Tiedosto" type="tns:Tiedosto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Tiedosto">
+				<xs:sequence>
+					<xs:element name="TiedostonKuvaus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TiedostoURL" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TiedostoSisalto" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TiedostoKoko" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TiedostoMuoto" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="TiedostoNimi" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="VieKohteitaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VieKohteitaResult" type="tns:Vastaus_WSPA5" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="Vastaus_WSPA5">
+				<xs:sequence>
+					<xs:element name="TilaKoodi" type="tns:TilaKoodi_WS" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="KohdeMaara" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Kohteet" type="tns:ArrayOfKohde_WSPA5_V" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfKohde_WSPA5_V">
+				<xs:sequence>
+					<xs:element name="Kohde" type="tns:Kohde_WSPA5_V" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Kohde_WSPA5_V">
+				<xs:sequence>
+					<xs:element name="AsiointitiliTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ViranomaisTunniste" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="KohteenTila" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="KohteenTilaKuvaus" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+			 <xs:element name="paluukanavaUrl" type="xsd:string">
+				<xs:annotation>
+					<xs:documentation>Paluukanava Url</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+    
+		</xs:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="requestheader">
+		<wsdl:part name="paluukanavaUrl" element="tns:paluukanavaUrl"/>
+	</wsdl:message>
+	
+	<wsdl:message name="ViranomaisPaluukanava_VieKohdeTiloja_InputMessage">
+		<wsdl:part name="parameters" element="tns:VieKohdeTiloja"/>
+	</wsdl:message>
+	<wsdl:message name="ViranomaisPaluukanava_VieKohdeTiloja_OutputMessage">
+		<wsdl:part name="parameters" element="tns:VieKohdeTilojaResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ViranomaisPaluukanava_VieKohteita_InputMessage">
+		<wsdl:part name="parameters" element="tns:VieKohteita"/>
+	</wsdl:message>
+	<wsdl:message name="ViranomaisPaluukanava_VieKohteita_OutputMessage">
+		<wsdl:part name="parameters" element="tns:VieKohteitaResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="ViranomaisPaluukanava">
+		<wsdl:operation name="VieKohdeTiloja">
+			<wsdl:input message="tns:ViranomaisPaluukanava_VieKohdeTiloja_InputMessage" wsaw:Action="http://www.suomi.fi/asiointitili/ViranomaisPaluukanava/VieKohdeTiloja"/>
+			<wsdl:output message="tns:ViranomaisPaluukanava_VieKohdeTiloja_OutputMessage" wsaw:Action="http://www.suomi.fi/asiointitili/ViranomaisPaluukanava/VieKohdeTilojaResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="VieKohteita">
+			<wsdl:input message="tns:ViranomaisPaluukanava_VieKohteita_InputMessage" wsaw:Action="http://www.suomi.fi/asiointitili/ViranomaisPaluukanava/VieKohteita"/>
+			<wsdl:output message="tns:ViranomaisPaluukanava_VieKohteita_OutputMessage" wsaw:Action="http://www.suomi.fi/asiointitili/ViranomaisPaluukanava/VieKohteitaResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ViranomaisPaluukanavaSoap" type="tns:ViranomaisPaluukanava">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="VieKohdeTiloja">
+			<soap:operation soapAction="http://www.suomi.fi/asiointitili/ViranomaisPaluukanava/VieKohdeTiloja" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:requestheader" part="paluukanavaUrl" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="VieKohteita">
+			<soap:operation soapAction="http://www.suomi.fi/asiointitili/ViranomaisPaluukanava/VieKohteita" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="tns:requestheader" part="paluukanavaUrl" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ViranomaisPaluukanavaService">
+		<wsdl:port name="ViranomaisPaluukanavaPort" binding="tns:ViranomaisPaluukanavaSoap">
+			<soap:address location="http://localhost:59587/ViranomaisPaluukanava.svc"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
