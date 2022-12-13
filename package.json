@@ -18,7 +18,7 @@
   "author": "Mikael Holm",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "soap": "^0.30.0"
   }
 }
